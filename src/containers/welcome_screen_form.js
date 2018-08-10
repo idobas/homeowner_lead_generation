@@ -3,6 +3,9 @@ import { Field, reduxForm } from 'redux-form';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import NumberFormat from 'react-number-format';
+import {saveUserdetails} from '../actions/index';
+import './welcome_screen_form.css';
+import {Link} from 'react-router-dom';
 
 
 
@@ -48,22 +51,26 @@ function NumberFormatCustom(props) {
 
 class WelcomeScreenForm extends Component {
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, dispatch } = this.props;
     return (
-      <form onSubmit={handleSubmit}>
-        <div>
-          <Field name="firstName" component={renderTextField} props={{text: 'First Name'}} type="text"/>
+      <form className="welcomeScreenForm" onSubmit={handleSubmit(data => dispatch(saveUserdetails(data)))}>
+        <div className="textField">
+            <Field name="firstName" component={renderTextField} props={{text: 'First Name'}} type="text"/>
         </div>
-        <div>
-          <Field name="lastName" component={renderTextField} props={{text: 'Last Name'}} type="text"/>
+        <div className="textField">
+            <Field name="lastName" component={renderTextField} props={{text: 'Last Name'}} type="text"/>
         </div>
-        <div>
-          <Field name="email" component={renderTextField} props={{text: 'Email'}} type="email"/>
+        <div className="textField">
+            <Field name="email" component={renderTextField} props={{text: 'Email'}} type="email"/>
         </div>
-        <div>
-          <Field name="phone" component={renderTextField} props={{text: 'Phone Number', inputType: 'phone'}} type="text"/>
+        <div className="textField">
+            <Field name="phone" component={renderTextField} props={{text: 'Phone Number', inputType: 'phone'}} type="text"/>
         </div>
-        <Button variant="contained" color="primary" type="submit">Submit</Button>
+        <div className="submitButton">
+            <Link to="/zillow_search">
+                <Button variant="contained" color="primary" type="submit">Submit</Button>
+            </Link>
+        </div>
       </form>
     );
   }
