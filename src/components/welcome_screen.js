@@ -1,14 +1,17 @@
 import React, {Component} from 'react';
+import WelcomeScreenForm from '../containers/welcome_screen_form';
 
 export default class WelcomeScreen extends Component {
-    constructor(props) {
-        super(props);
+    onFormSubmit(values) {
+        console.log(values);
     }
 
     render() {
         return (
             <div>
-                Welcome to the renty!
+                <h1>Welcome to rent-with-me!</h1>
+                <h2>To embark on our journey, we just need a few details:</h2>
+                <WelcomeScreenForm onSubmit={this.onFormSubmit}/>
             </div>
         );
     }
