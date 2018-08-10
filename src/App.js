@@ -3,6 +3,7 @@ import {Route, Switch} from 'react-router';
 import WelcomeScreen from './components/welcome_screen';
 import { BrowserRouter } from 'react-router-dom';
 import ProgressBar from './containers/progress_bar';
+import './App.css';
 
 
 export default class App extends Component {
@@ -10,7 +11,11 @@ export default class App extends Component {
     return (
         <BrowserRouter>
           <div>
-            <h1>Rent-With-Me</h1>
+            <div className='header'>
+              <span>Welcome Guest</span>
+              <h1>Rent With Me</h1>
+              <h3>The #1 home rental platform in the world!</h3>
+            </div>
             <Switch>
                 <Route exact path="/" component={WelcomeScreen} />
             </Switch>
