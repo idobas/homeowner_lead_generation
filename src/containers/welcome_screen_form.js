@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import NumberFormat from 'react-number-format';
 import {saveUserdetails} from '../actions/index';
 import './welcome_screen_form.css';
-import {Link} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 
 
 
@@ -50,10 +50,20 @@ function NumberFormatCustom(props) {
   }
 
 class WelcomeScreenForm extends Component {
+  constructor(props) {
+    super(props);
+    this.dispatchSubmit = this.dispatchSubmit.bind(this);
+  }
+
+  dispatchSubmit(data, dispatch) {
+    dispatch(saveUserdetails(data));
+    this.props.history.push('/address');
+  }
+
   render() {
     const { handleSubmit, dispatch } = this.props;
     return (
-      <form className="welcomeScreenForm" onSubmit={handleSubmit(data => dispatch(saveUserdetails(data)))}>
+      <form className="welcomeScreenForm" onSubmit={handleSubmit(data => this.dispatchSubmit(data, dispatch))}>
         <div className="textField">
             <Field name="firstName" component={renderTextField} props={{text: 'First Name'}} type="text"/>
         </div>
@@ -67,9 +77,7 @@ class WelcomeScreenForm extends Component {
             <Field name="phone" component={renderTextField} props={{text: 'Phone Number', inputType: 'phone'}} type="text"/>
         </div>
         <div className="submitButton">
-            <Link to="/zillow_search">
-                <Button variant="contained" color="primary" type="submit">Submit</Button>
-            </Link>
+            <Button variant="contained" color="primary" type="submit">Submit</Button>
         </div>
       </form>
     );
@@ -82,5 +90,5 @@ WelcomeScreenForm = reduxForm({
   validate 
 })(WelcomeScreenForm);
 
-export default WelcomeScreenForm;
+export default withRouter(WelcomeScreenForm);
 
