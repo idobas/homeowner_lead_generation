@@ -5,7 +5,7 @@ import {withRouter} from 'react-router-dom';
 
 class WelcomeScreen extends Component {
     componentWillMount() {
-        // TODO: this should dispatch an action to change the progress of the bar
+        // TODO: this should dispatch an action to change the progress of the bar.
         this.props.history.listen(() => console.log(this.props.history.location.pathname));
     }
 
