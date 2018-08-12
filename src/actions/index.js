@@ -1,5 +1,6 @@
 export const SAVE_USER_DETAILS = 'SAVE_USER_DETAILS';
 export const CHANGE_PROGRESS_BAR_PROGRESS = 'CHANGE_PROGRESS_BAR_PROGRESS';
+export const ADDRESS_CHANGED = 'ADDRESS_CHANGED';
 
 export function saveUserdetails(details) {
     return {
@@ -21,5 +22,12 @@ export function changeProgressBarProgress(path) {
     return {
         type: CHANGE_PROGRESS_BAR_PROGRESS,
         payload: {progress}
+    }
+}
+
+export function addressChanged(address, isInMaps) {
+    return {
+        type: ADDRESS_CHANGED,
+        payload: {address, isInMaps}
     }
 }

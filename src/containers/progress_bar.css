@@ -1,4 +1,6 @@
 .progressBar {
-    margin-left: 50%;
     width: 45%;
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
 }

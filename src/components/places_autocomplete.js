@@ -4,8 +4,11 @@ import PlacesAutocomplete, {
   getLatLng,
 } from 'react-places-autocomplete';
 import './places_autocomplete.css';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import {addressChanged} from '../actions/index';
  
-export default class LocationSearchInput extends React.Component {
+class LocationSearchInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = { address: '' };
@@ -13,14 +16,16 @@ export default class LocationSearchInput extends React.Component {
  
   handleChange = address => {
     this.setState({ address });
+    this.props.addressChanged(address, false);
   };
  
   handleSelect = address => {
     this.setState({ address });
+    const {addressChanged} = this.props;
     geocodeByAddress(address)
       .then(results => getLatLng(results[0]))
-      .then(latLng => console.log('Success', latLng))
-      .catch(error => console.error('Error', error));
+      .then(latLng => addressChanged(address, true))
+      .catch(error => addressChanged(address, false));
   };
 
   renderSuggestion(suggestion, getSuggestionItemProps) {
@@ -46,7 +51,7 @@ export default class LocationSearchInput extends React.Component {
         onSelect={this.handleSelect}
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-          <div>
+          <div className="input-container">
             <input
               {...getInputProps({
                 placeholder: 'Search Places ...',
@@ -63,3 +68,9 @@ export default class LocationSearchInput extends React.Component {
     );
   }
 }
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({addressChanged}, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(LocationSearchInput);

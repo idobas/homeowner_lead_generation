@@ -10,17 +10,17 @@ import {withRouter} from 'react-router-dom';
 
 
 const validate = values => {
-    const errors = {}
-    const requiredFields = [ 'firstName', 'lastName', 'email']
+    const errors = {};
+    const requiredFields = [ 'firstName', 'lastName', 'email'];
     requiredFields.forEach(field => {
       if (!values[ field ]) {
-        errors[ field ] = 'Required'
+        errors[ field ] = 'Required';
       }
     })
     if (values.email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-      errors.email = 'Invalid email address'
+      errors.email = 'Invalid email address';
     }
-    return errors
+    return errors;
   }
 
 const renderTextField = ({ inputType, text, input, label, meta: { touched, error }, ...custom }) => (
