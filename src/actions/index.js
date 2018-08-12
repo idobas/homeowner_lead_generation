@@ -8,9 +8,18 @@ export function saveUserdetails(details) {
     }
 }
 
-export function changeProgressBarProgress(progress) {
+export function changeProgressBarProgress(path) {
+    let progress = 0;
+    switch(path) {
+        case '/':
+            progress = 0;
+            break;
+        case '/address':
+            progress = (100 / 3);
+            break;
+    }
     return {
         type: CHANGE_PROGRESS_BAR_PROGRESS,
-        payload: progress
+        payload: {progress}
     }
 }

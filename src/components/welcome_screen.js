@@ -2,11 +2,16 @@ import React, {Component} from 'react';
 import WelcomeScreenForm from '../containers/welcome_screen_form';
 import './welcome_screen.css';
 import {withRouter} from 'react-router-dom';
+import {changeProgressBarProgress} from '../actions/index';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 
 class WelcomeScreen extends Component {
     componentWillMount() {
-        // TODO: this should dispatch an action to change the progress of the bar.
-        this.props.history.listen(() => console.log(this.props.history.location.pathname));
+        const {changeProgressBarProgress, history} = this.props;
+        this.props.history.listen(() => {
+            changeProgressBarProgress(history.location.pathname);
+        });
     }
 
     render() {
@@ -19,4 +24,10 @@ class WelcomeScreen extends Component {
     }
 }
 
-export default withRouter(WelcomeScreen);
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({changeProgressBarProgress}, dispatch);
+}
+
+WelcomeScreen = withRouter(WelcomeScreen);
+
+export default connect(null, mapDispatchToProps)(WelcomeScreen);
