@@ -4,16 +4,26 @@ import LocationSearchInput from '../components/places_autocomplete';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import './addresses_screen.css';
+import {getZestimate} from '../actions/index';
+import {bindActionCreators} from 'redux';
+import {withRouter} from 'react-router-dom';
 
 class AddressScreenForm extends Component {
+    dispatchSubmit() {
+        const { dispatch, address, getZestimate, history } = this.props;
+        dispatch(getZestimate(address));
+        history.push('/zestimate');
+    }
+
     render() {
+        const { handleSubmit, isAddressValid} = this.props;
         return (
-            <form className="welcomeScreenForm">
+            <form className="welcomeScreenForm" onSubmit={handleSubmit(() => this.dispatchSubmit())}>
                 <div className="addressInput">
                     <Field name="address" component={LocationSearchInput} props={{text: 'Address'}} type="text"/>
                 </div>
                 <div className="submitButton">
-                    <Button disabled={!this.props.isAddressValid} variant="contained" color="primary" type="submit">Check Zestimate!</Button>
+                    <Button disabled={!isAddressValid} variant="contained" color="primary" type="submit">Check Zestimate!</Button>
                 </div>
             </form>
         )
@@ -22,10 +32,17 @@ class AddressScreenForm extends Component {
 
 function mapStateToProps(state) {
     return {
-        isAddressValid: state.addresses.isInMaps
+        isAddressValid: state.addresses.isInMaps,
+        address: state.addresses.address
     }
 }
 
-export default reduxForm({
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({getZestimate}, dispatch);
+  }
+
+AddressScreenForm = reduxForm({
     form: 'addressScreenForm'
-})(connect(mapStateToProps)(AddressScreenForm));
+})(connect(mapStateToProps, mapDispatchToProps)(AddressScreenForm));
+
+export default withRouter(AddressScreenForm);

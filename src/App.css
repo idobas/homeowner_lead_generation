@@ -14,3 +14,16 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.main_content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.instructions {
+  flex: 2;
+}
+
+.history {
+  flex: 1;
+}
