@@ -17,7 +17,7 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <div className='header'>
-              <span>{`Welcome ${username ? username : 'Guest'}`}</span>
+              <span>{`Welcome, ${username ? username : 'Guest'}`}</span>
               <h1>Rent With Me</h1>
               <h3>The #1 home rental platform in the world!</h3>
             </div>

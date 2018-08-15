@@ -6,3 +6,19 @@
 .zestimate h2 {
     margin-left: 22%;
 }
+
+.zestimate .back {
+    margin-left: 50px;
+    position: absolute;
+    top: 656px;
+}
+
+.zestimate .money {
+    color: #50C878;
+}
+
+.zestimate .errorMessage {
+    text-align: left;
+    margin-left: 50px;
+    color: #CC0000;
+}

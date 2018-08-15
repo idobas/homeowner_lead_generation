@@ -5,7 +5,7 @@ export default class AddressScreen extends Component {
     render() {
         return (
             <div>
-                <p>What is the address you are looking for?</p>
+                <h4 style={{marginLeft: '50px'}}>What is the address you are looking for?</h4>
                 <AddressScreenForm/>
             </div>
         )

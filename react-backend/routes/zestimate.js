@@ -8,11 +8,13 @@ router.get('/', function(req, res, next) {
     address = encodeURI(address);
     cityStateZip = encodeURI(cityStateZip);
     const url = `http://www.zillow.com/webservice/GetSearchResults.htm?zws-id=${API_KEY}&address=${address}&citystatezip=${cityStateZip}`;
+    console.log(url);
     fetch(url)
         .then(result => result.text())
         .then(result => {
             res.send(result.split('<amount currency="USD">')[1].split('</amount>')[0]);
-        });
+        })
+        .catch(error => res.send('Sorry, could not calculate zestimate for this address :)'));
 });
 
 module.exports = router;

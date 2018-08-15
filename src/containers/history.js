@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import './history.css';
 
 class History extends Component {
     renderAddress(address) {
@@ -12,9 +13,11 @@ class History extends Component {
         return (
             <div>
                 <h4>Your search history:</h4>
-                <ul>
-                    {this.props.history.map(this.renderAddress)}
-                </ul>
+                <div className='historyList'>
+                    <ol>
+                        {this.props.history.map(this.renderAddress)}
+                    </ol>
+                </div>
             </div>
         )
     }
