@@ -4,6 +4,7 @@ export const ADDRESS_CHANGED = 'ADDRESS_CHANGED';
 export const GET_ZESTIMATE = 'GET_ZESTIMATE';
 
 export function saveUserdetails(details) {
+    localStorage.setItem('username', details.firstName);
     return {
         type: SAVE_USER_DETAILS,
         payload: details

@@ -12,7 +12,7 @@ import './App.css';
 
 class App extends Component {
   render() {
-    const {username} = this.props;
+    const username = localStorage.getItem('username');
     return (
         <BrowserRouter>
           <div>
