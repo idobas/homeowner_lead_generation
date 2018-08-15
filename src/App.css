@@ -15,9 +15,11 @@
   to { transform: rotate(360deg); }
 }
 
-.main_content {
-  display: flex;
-  justify-content: space-between;
+@media(min-width: 768px) {
+  .main_content {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 .instructions {
