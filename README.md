@@ -2,13 +2,23 @@ This is a project for homeowners, or home seekers, willing to get a zestimate fo
 
 How to start?
 First clone the repo, then:
+
+If you use yarn:
 ```
-yarn (or npm install)
-yarn start (or npm start)
+yarn
+yarn start
 cd react-backend 
-yarn start (or npm start)
+yarn start
+
+```
+If you use npm:
+```
+npm install
+npm start
+cd react-backend 
+npm start
 
 ```
 ### Tech stack:
-This project uses react in the frontend, along with material-ui components.
+This project uses react+redux in the frontend, along with material-ui components.
 It also has a Node.js proxy server to handle the Zillow api calls.
